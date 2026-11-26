@@ -221,3 +221,9 @@ __marimo__/
 
 # Streamlit
 .streamlit/secrets.toml
+
+####### Project #######
+
+# Downloaded dataset, and trained adapters with their results.
+/data/
+/output/

@@ -1,0 +1,23 @@
+[project]
+name = "persona-embeddings"
+version = "1.0.0"
+description = "LoRA fine-tuning of Qwen3-Embedding-0.6B to retrieve persons from short descriptions."
+requires-python = ">=3.12"
+dependencies = [
+    "datasets>=4.0",
+    "peft>=0.15",
+    "torch>=2.6",
+    "transformers>=4.51",
+]
+
+[tool.uv]
+package = false
+
+# PyTorch with CUDA 12.6 on Linux and Windows.
+[[tool.uv.index]]
+name = "pytorch-cu126"
+url = "https://download.pytorch.org/whl/cu126"
+explicit = true
+
+[tool.uv.sources]
+torch = [{ index = "pytorch-cu126", marker = "sys_platform == 'linux' or sys_platform == 'win32'" }]
