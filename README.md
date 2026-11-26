@@ -58,6 +58,6 @@ Each run writes its LoRA adapter and `result.json` to `output/<run name>/`.
 | `src/train.py` | LoRA fine-tuning |
 | `src/evaluate.py` | retrieval metrics, baselines and the results table |
 
-## License
+## License and attribution
 
-This project is licensed under the [Creative Commons Attribution 4.0 International License (CC BY 4.0)](https://creativecommons.org/licenses/by/4.0/). See [LICENSE](LICENSE) for the full text.
+Our fine-tuning changes and this documentation are released under [CC BY 4.0](./LICENSE-CC-BY-4.0), the same license as the training data. The weights are a modified version of [Qwen/Qwen3-Embedding-0.6B](https://huggingface.co/Qwen/Qwen3-Embedding-0.6B), which is licensed under the Apache License 2.0; the parts that come from the base model stay under Apache 2.0, and a copy of that license is included as [LICENSE-APACHE-2.0](./LICENSE-APACHE-2.0). The training data is derived from [NVIDIA Nemotron-Personas-Belgium](https://huggingface.co/datasets/nvidia/Nemotron-Personas-Belgium) (CC BY 4.0); keep NVIDIA's and Qwen's attribution when you redistribute this model.
