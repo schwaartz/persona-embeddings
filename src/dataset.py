@@ -32,9 +32,13 @@ def load_profiles(language: str, uuids: set[str]) -> dict[str, str]:
     from huggingface_hub import hf_hub_download
     path = hf_hub_download(NEMOTRON, f"data/{language}_BE.parquet", repo_type="dataset",
                            local_dir=DATA_DIR / "nemotron")
-    personas = pq.read_table(path).to_pylist()
-    return {p["uuid"]: "\n".join(f"[{field}] {value}" for field, value in p.items() if field != "uuid")
-            for p in personas if p["uuid"] in uuids}
+    profiles = {}
+    # Read in batches and keep only the needed rows: the full file would take about 6 GB of RAM.
+    for batch in pq.ParquetFile(path).iter_batches(batch_size=4096):
+        for p in batch.to_pylist():
+            if p["uuid"] in uuids:
+                profiles[p["uuid"]] = "\n".join(f"[{field}] {value}" for field, value in p.items() if field != "uuid")
+    return profiles
 
 
 def load_split(language: str) -> dict[str, dict[str, dict]]:
